@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<svg id="Layer_1" style="enable-background:new 0 0 96 96;" version="1.1" viewBox="0 0 96 96" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <line x1="6" x2="90" y1="92" y2="92" stroke="#FFA500" stroke-width="4" stroke-linecap="round" stroke-miterlimit="10" fill="none"/>
+    <path d="M48,50v4h30c0,0,4,0.2,4,4c0,4-4,4-4,4H18c0,0-4,0.1-4,4c0,4.2,4,4,4,4h60c0,0,4,0.1,4,4c0,4.1-4,4-4,4H18c0,0-4,0-4,4c0,4.1,4,4,4,4h64" stroke="#FFA500" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <path d="M41,4c-2,0-7,4-7,4v16l10,20h4h4l10-20V4c0,0-4.9,4-7,4C53,8,43,4,41,4z" stroke="#FFA500" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <line x1="46" x2="46" y1="12" y2="33" stroke="#FFA500" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <line x1="40" x2="40" y1="12" y2="22" stroke="#FFA500" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+</svg>
