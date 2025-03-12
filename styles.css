@@ -123,6 +123,24 @@ h2 {
   transform: scale(1.05);
 }
 
+.info-cont .title {
+  color: var(--white-2);
+  background: var(--jet);
+  font-size: 0.7rem;
+  font-weight: var(--fw-0);
+  width: max-content;
+  padding: 2px 10px;
+  margin: auto;
+  margin-top: 0px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.info-cont .title:hover {
+  transition: var(--transition-1);
+  transform: scale(1.05);
+}
+
 hr {
   width: 120px;
   height: 1px;
@@ -206,6 +224,9 @@ hr {
   }
   .info-content .title {
     font-size: 0.8rem;
+  }
+  .info-cont .title {
+    font-size: 0.4rem;
   }
   .avatar-box {
     width: 110px;
