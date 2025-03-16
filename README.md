@@ -1,1 +1,1 @@
-Live Priview: https://linkbio-kappa.vercel.app/
+Live Priview: https://www.dulpanadisaragih.my.id
