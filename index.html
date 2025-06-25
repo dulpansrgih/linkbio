@@ -16,16 +16,32 @@
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="DULPANS' LINK" />
     <link rel="manifest" href="favicon/site.webmanifest" />
+    <!-- Fontawsome -->
+    <script src="https://kit.fontawesome.com/704ff50790.js" crossorigin="anonymous"></script>
+    
     <style>
         .icon {
             color: #f9a511; /* Ganti warna sesuai keinginan */
         }
+    .button-right {
+        float: right;
+        padding: 10px;
+        width: 10%;
+        background: var(--background-gradient-jet);
+        border-radius: 8px;
+        cursor: pointer;
+        margin-right: 10%;
+    }
     </style>
 </head>
 <body>
+            
     <div class="container">
-        <header class="header">
-            <figure class="avatar-box">
+         <header class="header"></header>
+        <!-- Share Profile Button -->    
+        <div class="right">
+            <button id="shareButton" class="button-right"><i class="fa fa-clipboard"></i></button></div>
+            <br><br><figure class="avatar-box">
                 <img src="./images/dulpans-url.png" alt="Imágen avatar" class="avatar">
             </figure>
             <div class="info-content">
@@ -36,7 +52,7 @@
             </div>
         </header>
 
-
+        <br>
         <div class="wrapper">
            <div class="button">
             <div class="icon">
@@ -61,22 +77,22 @@
 
         <hr>
         <nav class="links-list">
-            <a href="https://prof.dulpanadisaragih.my.id/" class="link-item">
+            <button onclick="location.href='https://prof.dulpanadisaragih.my.id/';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/dul-darkcolour.svg" alt="Profile icon">
                 </div>
                 <div class="link-content-box">
                     <h4 class="h4 link-item-title">Profile Dulpan AS</h4>
                 </div>
-            </a>  
-            <a href="https://linkedin.openinapp.co/dulpansrgih" class="link-item" target="_blank">
+            </button> 
+            <button onclick="location.href='https://linkedin.openinapp.co/dulpansrgih';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/linkedinyes.svg" alt="LinkedIn icon">
                 </div>
                 <div class="link-content-box">
                     <h4 class="link-item-title">LinkedIn</h4>
                 </div>
-            </a>
+            </button>
                         
             <!-- 
             <a href="https://www.instagram.com/dulpansrgih_" class="link-item" target="_blank">
@@ -90,22 +106,22 @@
             -->
 
             
-            <a href="https://www.tiktok.com/@dulpansrgih" class="link-item" target="_blank">
+                <button onclick="location.href='https://www.tiktok.com/@dulpansrgih';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/tiktok.svg" alt="TikTok icon">
                 </div>
                 <div class="link-content-box">
                     <h4 class="h4 link-item-title">TikTok</h4>
                 </div>
-            </a>
-            <a href="#" class="link-item" target="_blank">
+            </button>
+            <button onclick="location.href='#';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/threads.svg" alt="Threads icon">
                 </div>
                 <div class="link-content-box">
                     <h4 class="h4 link-item-title">Threads</h4>
                 </div>
-            </a>
+            </button>
 
             <!--
             <a href="https://www.youtube.com/@dulpansofficial" class="link-item" target="_blank">
@@ -138,22 +154,34 @@
             -->
             
 
-            <a href="mailto:dulpansofficial@gmail.com" class="link-item" target="_blank">
+            <button onclick="location.href='mailto:dulpansofficial@gmail.com';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/gmail1.svg" alt="Gmail icon">
                 </div>
                 <div class="link-content-box">
                     <h4 class="h4 link-item-title">Contact Us (Gmail)</h4>
                 </div>
-            <a href="https://mobile.capcutshare.com/s/Zs8meBhAk/" class="link-item" target="_blank">
+            </button>
+            <button onclick="location.href='https://mobile.capcutshare.com/s/Zs8meBhAk/';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/Capcut.svg" alt="CapCut icon">
                 </div>
                 <div class="link-content-box">
                     <h4 class="h4 link-item-title">CapCut Template</h4>
                 </div>
-            </a>
-            <a href="https://the.dulpanadisaragih.my.id/" class="link-item" target="_blank">
+            </button>
+            <button onclick="location.href='https://lynk.id/dothebest._';" class="link-item">
+                <div class="link-icon-box">
+                    <img src="./images/hshop.svg" alt="Support icon">
+                </div>
+                <div class="link-content-box">
+                    <h4 class="h4 link-item-title">Purchase in Lynk.id <br> (<h style="color: rgba(89, 228, 175, 0.993);">@dothebest._</h>)</h4>
+                </div>
+            </button>
+            
+            <br>
+            <hr>
+            <button onclick="location.href='https://the.dulpanadisaragih.my.id/';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/AplleAndro.svg" alt="AppleAndro icon">
                 </div>
@@ -163,19 +191,35 @@
                         <p class="title">Available at <h style="color: rgba(5, 238, 63, 0.993);">IOS(Apple) & Android</h></p>
                     </div>
                 </div>
-            </a>
-            <a href="https://lynk.id/dothebest._" class="link-item">
+            </button>
+            <button onclick="location.href='https://tools.dulpanadisaragih.my.id';" class="link-item">
                 <div class="link-icon-box">
-                    <img src="./images/donatefordull.svg" alt="Support icon">
+                    <img src="./images/setup.png" alt="ToolsGenerator icon">
                 </div>
                 <div class="link-content-box">
-                    <h4 class="h4 link-item-title">Purchase in Lynk.id <br> (<h style="color: rgba(89, 228, 175, 0.993);">@dothebest._</h>)</h4>
+                    <h4 class="h4 link-item-title">Tools Generator</h4>
                 </div>
-            </a>
-            <hr>
-            </a>
+            </button>
+            <button onclick="location.href='https://qris.dulpanadisaragih.my.id';" class="link-item">
+                <div class="link-icon-box">
+                    <img src="/images/donatefordull.svg" alt="SupportUs icon">
+                </div>
+                <div class="link-content-box">
+                    <h4 class="h4 link-item-title">Support <h style="color: rgba(5, 238, 63, 0.993);">Us</h></h4>
+                    <div class="info-cont">
+                    <p class="title">
+                        <h style="color: rgba(238, 177, 10, 0.993);">QRIS</h> Payment 
+                        <h style="color: rgba(5, 238, 63, 0.993);">&</h>
+                        <h style="color: rgba(238, 177, 10, 0.993);">Bank
+                        <h style="color: rgba(5, 238, 63, 0.993);">/</h>
+                        <h style="color: rgba(238, 177, 10, 0.993);">e-Wallet</h> Payment</p>
+                    </div>
+                </div>
+            </button>
 
-            <a href="https://whatsapp.com/channel/0029Vb4hOZmL2ATq59RkT83u" class="link-item">
+            <br>
+            <hr>
+            <button onclick="location.href='https://whatsapp.com/channel/0029Vb4hOZmL2ATq59RkT83u';" class="link-item">
                 <div class="link-icon-box">
                     <img src="./images/whatsappver.svg" alt="Support icon">
                 </div>
@@ -185,7 +229,7 @@
                         <p class="title">Informasi seputar <h style="color: rgba(238, 177, 10, 0.993);">Lowongan Pekerjaan, Webinar/Seminar, & Workshop.</h></p>
                     </div>
                 </div>
-            </a>          
+            </button>          
         </nav>
         <footer class="footer">
             <span class="footer__copy">
@@ -193,6 +237,36 @@
                 • <a href="">Dulpan Adi Saragih</a></b>
             </span>
         </footer>
+        •
     </div>
-</body>
+
+  <script>
+    // JavaScript to handle the share functionality
+    const shareButton = document.getElementById('shareButton');
+    const profileLink = "https://dulpanadisaragih.my.id"; // Replace with your profile link
+
+    shareButton.addEventListener('click', async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: 'Check out this profile!',
+            text: 'Here is a profile I wanted to share with you.',
+            url: profileLink,
+          });
+          alert('Profile link shared successfully!');
+        } catch (error) {
+          console.error('Error sharing:', error);
+        }
+      } else {
+        // Fallback for browsers that don't support the Web Share API
+        navigator.clipboard.writeText(profileLink).then(() => {
+          alert('Profile link copied to clipboard!');
+        }).catch(err => {
+          console.error('Failed to copy link:', err);
+        });
+      }
+    });
+  </script>
+
+</head>
 </html>
