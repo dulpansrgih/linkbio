@@ -32,6 +32,10 @@
         cursor: pointer;
         margin-right: 10%;
     }
+    #time-date {
+      font-size: 8px;
+      color: #f9a41156;
+    }
     </style>
 </head>
 <body>
@@ -232,13 +236,14 @@
                 </div>
             </button>          
         </nav>
+        
         <footer class="footer">
             <span class="footer__copy">
                <br><b>&#169; 2024<script>new Date().getFullYear()>2022&&document.write("-"+new Date().getFullYear());</script>
                 • <a href="">Dulpan Adi Saragih</a></b>
+                <div id="time-date"></div>
             </span>
         </footer>
-        •
     </div>
 
   <script>
@@ -267,6 +272,18 @@
         });
       }
     });
+
+    // Live Time & Date
+    function updateTimeAndDate() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const date = now.toLocaleDateString(undefined, options);
+      const time = now.toLocaleTimeString();
+      document.getElementById('time-date').textContent = `${date} - ${time}`;
+    }
+
+    setInterval(updateTimeAndDate, 1000); // Update every second
+    updateTimeAndDate(); // Initial call to display immediately
   </script>
 
 </head>
