@@ -2195,7 +2195,7 @@
         function updateSwipeLine() {
             const totalItems = swipeButtons.length;
             if (totalItems > 0) {
-                const itemWidthPercent = 100 / totalItems;
+                const itemWidthPercent = 150 / totalItems;
                 const translateXPercent = currentIndex * itemWidthPercent;
                 swipeProgressLine.style.width = `${itemWidthPercent}%`;
                 swipeProgressLine.style.transform = `translateX(${translateXPercent}%)`;
