@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unduhan Dimulai...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="DULPANS' LINK" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
+    <style>
+        :root {
+            --orange: #FDAD15;
+            --background-dark: #0f0f0f;
+            --card-dark: #1a1a1a;
+            --text-light: #f0f0f0;
+            --gray-light: #888;
+            --glow-color: rgba(253, 173, 21, 0.5);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, #2c2c2c 0%, #0a0a0a 100%);
+            color: var(--text-light);
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            position: relative;
+            max-width: 450px;
+            width: 90%;
+            background: var(--card-dark);
+            border-radius: 20px;
+            padding: 40px 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transform: scale(0.9);
+            opacity: 0;
+            animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+            z-index: 2;
+        }
+
+        .countdown-wrapper {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #252525 0%, #1a1a1a 100%);
+            border-radius: 50%;
+            box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5),
+                        0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .countdown-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .countdown-progress {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 5px solid transparent;
+            border-top-color: var(--orange);
+            transform: rotate(-45deg);
+            animation: countdown 5s linear forwards;
+            filter: drop-shadow(0 0 5px var(--glow-color));
+        }
+
+        .countdown-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--orange);
+            z-index: 1;
+            text-shadow: 0 0 10px var(--glow-color);
+            animation: pulse 1s infinite alternate;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--text-light);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            color: var(--gray-light);
+        }
+
+        .download-link {
+            text-decoration: none;
+            background: var(--orange);
+            padding: 15px 35px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            color: var(--card-dark);
+            font-size: 1rem;
+        }
+
+        .download-link:hover:not(:disabled) {
+            background: #fff;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--glow-color);
+        }
+        
+        .download-link:disabled {
+            background: #444;
+            color: #888;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Animasi */
+        @keyframes popIn {
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes countdown {
+            from { transform: rotate(-45deg); }
+            to { transform: rotate(315deg); }
+        }
+        
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(1.05); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="countdown-wrapper">
+            <div class="countdown-circle"></div>
+            <div class="countdown-progress"></div>
+            <div id="countdown-number" class="countdown-number">5</div>
+        </div>
+        <h1>Unduhan Akan Segera Dimulai</h1>
+        <p>Mohon tunggu sebentar. Tombol unduh akan aktif setelah hitungan mundur selesai.</p>
+        <button id="manual-download-btn" class="download-link" disabled>Unduh Sekarang</button>
+    </div>
+
+    <script>
+        // Kode JavaScript untuk hitungan mundur
+        const countdownNumberEl = document.getElementById('countdown-number');
+        const downloadButton = document.getElementById('manual-download-btn');
+        const countdownDuration = 5;
+        const fileUrl = './aast/DramaBoxMod.apk'; // Ganti dengan path file Anda yang sebenarnya
+        const countdownProgress = document.querySelector('.countdown-progress');
+        let countdown = countdownDuration;
+        let interval;
+
+        // Fungsi untuk memulai hitungan mundur
+        function startCountdown() {
+            countdownNumberEl.textContent = countdown;
+            downloadButton.disabled = true;
+            
+            // Reset dan mulai animasi
+            countdownProgress.style.animation = 'none';
+            void countdownProgress.offsetWidth; // Force reflow
+            countdownProgress.style.animation = `countdown ${countdownDuration}s linear forwards`;
+
+            interval = setInterval(() => {
+                countdown--;
+                countdownNumberEl.textContent = countdown;
+
+                if (countdown <= 0) {
+                    clearInterval(interval);
+                    downloadButton.disabled = false;
+                    downloadButton.textContent = 'Unduh Sekarang';
+                    countdownNumberEl.style.display = 'none';
+                    downloadButton.style.cursor = 'pointer';
+                }
+            }, 1000);
+        }
+
+        // Tautan manual untuk unduhan
+        downloadButton.addEventListener('click', () => {
+            if (!downloadButton.disabled) {
+                const link = document.createElement('a');
+                link.href = fileUrl;
+                link.download = 'DramaBoxMod.apk';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        });
+        
+        // Memulai hitungan mundur saat halaman dimuat
+        window.onload = startCountdown;
+    </script>
+</body>
+</html>
