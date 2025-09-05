@@ -1334,7 +1334,7 @@
             width: calc(100% - 40px);
             margin: 15px auto;
         }
-        @media (min-width: 450px) {
+        @media (min-width: 300px) {
             .two-column-links {
                 grid-template-columns: 1fr 1fr;
             }
@@ -1400,13 +1400,13 @@
         #apps-modal .modal-content {
             background: linear-gradient(145deg, hsl(240, 5%, 15%), hsl(240, 2%, 10%));
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px; /* Padding dikurangi lagi */
-            max-width: 350px; /* Lebar modal dikurangi lagi */
+            padding: 15px;
+            max-width: 350px;
             animation: fadeIn 0.3s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
         }
         #apps-modal .modal-content h4 {
             color: var(--orange);
-            font-size: 1.2rem; /* Ukuran font judul dikurangi lagi */
+            font-size: 1.2rem;
             margin-bottom: 5px;
             font-weight: 600;
             text-transform: uppercase;
@@ -1414,7 +1414,7 @@
             animation: text-pulse 3s infinite ease-in-out;
         }
         #apps-modal .modal-content p {
-            font-size: 0.75rem; /* Ukuran font paragraf dikurangi lagi */
+            font-size: 0.75rem;
             color: var(--light-gray);
             margin-bottom: 15px;
             font-style: italic;
@@ -1423,8 +1423,8 @@
         .swipe-container {
             overflow: hidden;
             width: 100%;
-            margin-bottom: 10px;
             position: relative;
+            padding-bottom: 15px; /* Mengurangi jarak untuk garis indikator */
         }
         .swipe-wrapper {
             display: flex;
@@ -1432,13 +1432,14 @@
             cursor: grab;
             user-select: none;
             gap: 10px;
+            position: relative;
         }
         .swipe-wrapper:active {
             cursor: grabbing;
         }
-        /* TAMPILAN BUTTON BARU DI SINI */
+        /* Tampilan tombol di dalam modal */
         .app-item-button {
-            flex: 0 0 calc(100% - 20px); /* Disesuaikan dengan gap */
+            flex: 0 0 calc(100% - 20px);
             width: 100%;
             display: flex;
             align-items: center;
@@ -1458,7 +1459,7 @@
             background: linear-gradient(145deg, #2c2c2c, #252525);
         }
         .app-item-button .profile-image-container {
-            width: 35px; /* Ukuran gambar dikurangi lagi */
+            width: 35px;
             height: 35px;
             min-width: 35px;
             margin-right: 12px;
@@ -1483,14 +1484,14 @@
             padding-right: 12px;
         }
         .app-item-button .featured-name {
-            font-size: 0.8rem; /* Ukuran font dikurangi lagi */
+            font-size: 0.8rem;
             color: var(--white-1);
             font-weight: 600;
             margin: 0;
             line-height: 1.2;
         }
         .app-item-button .featured-info {
-            font-size: 0.7rem; /* Ukuran font dikurangi lagi */
+            font-size: 0.7rem;
             color: var(--light-gray);
             margin: 0;
             line-height: 1.3;
@@ -1502,7 +1503,7 @@
         }
         .app-item-button .featured-button {
             padding: 4px 8px;
-            font-size: 0.6rem; /* Ukuran font tombol dikurangi lagi */
+            font-size: 0.6rem;
             border-radius: 4px;
             background: var(--white-2);
             color: var(--orange);
@@ -1515,23 +1516,38 @@
             color: var(--light-gray);
             transition: transform 0.3s ease, color 0.3s ease;
         }
-        /* Gaya indikator swipe */
-        .swipe-indicators {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 10px;
+        /* Styling Garis Swipe */
+        .swipe-line-container {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            height: 4px;
+            width: 100%;
+            max-width: 150px;
+            background-color: #333; /* Warna garis abu-abu gelap */
+            border-radius: 2px;
+            overflow: hidden; /* Penting untuk menyembunyikan bagian garis oranye yang berlebih */
         }
-        .swipe-indicators .dot {
-            width: 8px;
-            height: 8px;
+        .swipe-progress-line {
+            position: absolute;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background-color: var(--orange);
+            border-radius: inherit;
+            transition: width 0.4s cubic-bezier(0.25, 0.1, 0.25, 1), transform 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        /* Menghilangkan indikator dot yang lama */
+        .swipe-indicators {
+            display: none;
         }
         #more-apps-button {
             width: 100%;
-            padding: 10px; /* Padding dikurangi */
+            padding: 10px;
             background-color: var(--orange);
             color: var(--black);
-            font-size: 0.85rem; /* Ukuran font dikurangi */
+            font-size: 0.85rem;
             font-weight: 600;
             border: none;
             border-radius: 8px;
@@ -1855,10 +1871,8 @@
                     </button>
                 </div>
             </div>
-            <div class="swipe-indicators">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+            <div class="swipe-line-container">
+                <div class="swipe-progress-line"></div>
             </div>
             <a href="https://aast.dulpanadisaragih.my.id/" target="_blank" id="more-apps-button">
                 Lihat Lebih Banyak
@@ -2174,39 +2188,49 @@
         const closeAppsModalBtn = document.getElementById('close-apps-modal');
         const moreAppsButton = document.getElementById('more-apps-button');
         const swipeWrapper = document.querySelector('#apps-modal .swipe-wrapper');
-        const swipeIndicators = document.querySelectorAll('#apps-modal .swipe-indicators .dot');
+        const swipeButtons = document.querySelectorAll('#apps-modal .swipe-wrapper > button');
+        
+        let currentIndex = 0;
         let isDragging = false;
         let startPos = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
         const transitionTime = 400;
 
-        // Gunakan selector yang lebih spesifik untuk tombol di dalam modal
-        const swipeButtons = document.querySelectorAll('#apps-modal .swipe-wrapper > button');
+        const swipeLineContainer = document.querySelector('.swipe-line-container');
+        const swipeProgressLine = document.querySelector('.swipe-progress-line');
 
+        function updateSwipeLine() {
+            const totalItems = swipeButtons.length;
+            if (totalItems > 0) {
+                const itemWidthPercent = 100 / totalItems;
+                const translateXPercent = currentIndex * itemWidthPercent;
+                swipeProgressLine.style.width = `${itemWidthPercent}%`;
+                swipeProgressLine.style.transform = `translateX(${translateXPercent}%)`;
+            }
+        }
+        
         function setPositionByIndex() {
             if (swipeButtons.length > 0) {
                 const buttonWidth = swipeButtons[0].offsetWidth;
                 const gap = 10;
                 currentTranslate = -currentIndex * (buttonWidth + gap);
                 swipeWrapper.style.transform = `translateX(${currentTranslate}px)`;
-                updateIndicators();
+                updateSwipeLine(); 
             }
         }
-        function updateIndicators() {
-            swipeIndicators.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentIndex);
-            });
-        }
+
         function getPositionX(e) {
             return e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
         }
+
         function touchStart(e) {
             startPos = getPositionX(e);
             isDragging = true;
             swipeWrapper.style.transition = 'none';
             prevTranslate = currentTranslate;
         }
+
         function touchEnd() {
             isDragging = false;
             const movedBy = currentTranslate - prevTranslate;
@@ -2218,6 +2242,7 @@
             setPositionByIndex();
             swipeWrapper.style.transition = `transform ${transitionTime}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
         }
+
         function touchMove(e) {
             if (isDragging) {
                 const currentPosition = getPositionX(e);
@@ -2225,6 +2250,7 @@
                 swipeWrapper.style.transform = `translateX(${currentTranslate}px)`;
             }
         }
+
         appsButton.addEventListener('click', (event) => {
             event.preventDefault();
             appsModal.style.display = 'flex';
@@ -2234,16 +2260,19 @@
                 setPositionByIndex();
             });
         });
+
         closeAppsModalBtn.addEventListener('click', () => {
             appsModal.style.display = 'none';
             document.body.classList.remove('blur-active');
         });
+
         window.addEventListener('click', (event) => {
             if (event.target === appsModal) {
                 appsModal.style.display = 'none';
                 document.body.classList.remove('blur-active');
             }
         });
+
         swipeWrapper.addEventListener('mousedown', touchStart);
         swipeWrapper.addEventListener('mouseup', touchEnd);
         swipeWrapper.addEventListener('mouseleave', touchEnd);
@@ -2251,16 +2280,15 @@
         swipeWrapper.addEventListener('touchstart', touchStart);
         swipeWrapper.addEventListener('touchend', touchEnd);
         swipeWrapper.addEventListener('touchmove', touchMove);
-        swipeIndicators.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                currentIndex = index;
-                setPositionByIndex();
-                swipeWrapper.style.transition = `transform ${transitionTime}ms cubic-bezier(0.25, 0.1, 0.25, 1)`;
-            });
-        });
+        
         moreAppsButton.addEventListener('click', () => {
             window.open('https://aast.dulpanadisaragih.my.id/', '_blank');
         });
+
+        window.addEventListener('load', () => {
+            updateSwipeLine();
+        });
+        
     </script>
 </body>
 </html>
