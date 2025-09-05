@@ -1,6 +1,6 @@
 const initialYear = 2024;
-const lastUpdatedDate = "02 September 2024";
-const phoneNumber = "6282161741753"; // Nomor WhatsApp Anda
+const lastUpdatedDate = "05 September 2025";
+const phoneNumber = "6285229592941"; // Nomor WhatsApp Anda
 const emailAddress = "dulpansofficial@gmail.com"; // Alamat Email Anda
 const shareButton = document.getElementById('shareButton');
 const sharePopup = document.getElementById('share-popup');
