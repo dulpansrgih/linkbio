@@ -21,7 +21,14 @@
     --transition-1: 0.25s ease-in-out;
     --transition-2: 0.5s ease-in-out;
 }
-html { font-family: var(--ff-poppins); }
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: var(--ff-poppins);
+}
+
 body {
     display: flex;
     justify-content: center;
@@ -30,13 +37,16 @@ body {
     padding: 20px;
     min-height: 100vh;
 }
+
 body.blur-active > .container {
     filter: blur(5px);
     transition: filter 0.3s ease-in-out;
 }
+
 body.blur-active {
     overflow: hidden;
 }
+
 .container {
     position: relative;
     background: linear-gradient(to bottom right, hsl(240, 1%, 20%) 0%, hsla(240, 1%, 15%, 0) 50%);
@@ -264,9 +274,6 @@ h2 {
     padding: 4px 8px;
     font-size: 0.8rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
-.featured-box.purchase-link .pin-icon i {
-    font-size: 0.8rem;
 }
 .featured-box.purchase-link:hover .pin-icon {
     transform: translateY(-2px);
@@ -555,8 +562,13 @@ h2 {
 }
 .share-popup-qr canvas {
     display: block;
-    width: 120px !important;
-    height: 120px !important;
+    width: 100% !important;
+    height: 100% !important;
+    image-rendering: crisp-edges;
+    z-index: 1;
+    position: relative;
+    padding: 0;
+    background-color: white; /* Tambahkan ini agar QR code memiliki latar belakang putih yang solid */
 }
 .share-popup-qr-logo {
     position: absolute;
@@ -712,6 +724,7 @@ h2 {
     color: var(--white-1);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
     border: 1px solid hsla(0, 0%, 25%, 0.5);
+    position: relative;
     animation: fadeIn 0.3s ease-in-out forwards, slightMove 5s infinite alternate ease-in-out;
 }
 @keyframes fadeIn {
@@ -1606,7 +1619,27 @@ h2 {
     background-color: hsla(0, 0%, 50%, 0.3);
     margin: 20px auto;
     border: none;
+    position: relative; /* Penting untuk efek pseudo-element */
 }
+.styled-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 3px; /* Tinggi efek glow */
+    transform: translateY(-50%);
+    background: linear-gradient(to right,
+        transparent 0%,
+        rgba(253, 173, 21, 0.5) 10%,
+        rgba(253, 173, 21, 0.9) 50%,
+        rgba(253, 173, 21, 0.5) 90%,
+        transparent 100%
+    );
+    filter: blur(5px); /* Efek blur untuk glow */
+    z-index: 1;
+}
+
 /* Styling Tombol Navigasi di dalam Modal Apps */
 .swipe-container {
     position: relative;
@@ -1658,4 +1691,729 @@ h2 {
         height: 30px;
         font-size: 0.8rem;
     }
+}
+/* ==================================== */
+/* Gaya untuk Pop-up "Support Us" (Revisi) */
+/* ==================================== */
+.loan-info {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid hsla(0, 0%, 50%, 0.3);
+    text-align: center;
+}
+
+.loan-info p {
+    font-size: 0.85rem;
+    color: var(--light-gray);
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.popup-button.loan {
+    background: #4A90E2;
+    color: var(--white-2);
+    font-weight: 700;
+    width: 80%;
+    max-width: 200px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    margin: 0 auto;
+}
+
+.popup-button.loan:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(74, 144, 226, 0.5);
+}
+
+/* ==================================== */
+/* Gaya Pop-up QRIS & QR Display (Revisi Final) */
+/* ==================================== */
+#qris-modal, #qr-display-modal, #terms-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+#terms-modal .terms-content-text::-webkit-scrollbar {
+    width: 8px;
+}
+#terms-modal .terms-content-text::-webkit-scrollbar-track {
+    background: #2D2D2D;
+    border-radius: 10px;
+}
+#terms-modal .terms-content-text::-webkit-scrollbar-thumb {
+    background-color: var(--orange);
+    border-radius: 10px;
+    border: 2px solid #2D2D2D;
+}
+#terms-modal .terms-content-text::-webkit-scrollbar-thumb:hover {
+    background-color: #FFA500;
+}
+
+#terms-modal .terms-content-text p {
+    font-size: 0.95rem;
+    color: var(--white-1);
+    margin-bottom: 15px;
+}
+#terms-modal .terms-content-text ul {
+    margin: 0;
+    padding-left: 20px;
+}
+#terms-modal .terms-content-text li {
+    font-size: 0.9rem;
+    color: var(--light-gray);
+    margin-bottom: 10px;
+}
+
+#terms-modal #terms-done-button {
+    background-color: var(--orange);
+    color: var(--black);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(253, 173, 21, 0.3);
+    width: 70%;
+    margin: 0 auto;
+}
+#terms-modal #terms-done-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 20px rgba(253, 173, 21, 0.5);
+}
+
+#qris-modal .modal-content, #qr-display-modal .modal-content, #terms-modal .modal-content {
+    background: linear-gradient(160deg, #1A1A1A, #2C2C2C);
+    border-radius: 20px;
+    padding: 30px;
+    max-width: 380px;
+    width: 90%;
+    text-align: center;
+    color: var(--white-1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    border: 2px solid #3A3A3A;
+    position: relative;
+    animation: zoomIn 0.4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#qris-modal .modal-content h4, #qr-display-modal .modal-content h4, #terms-modal .modal-content h4 {
+    font-size: 1.5rem;
+    color: var(--orange);
+    margin-bottom: 5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#qris-modal .modal-content p, #qr-display-modal .modal-content p {
+    font-size: 0.95rem;
+    color: var(--light-gray);
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+/* Input Nominal - Gaya lebih terfokus dan bersih */
+#qris-modal .modal-content .space-y-4 {
+    width: 100%;
+}
+
+/* Gaya untuk kontainer input */
+.relative {
+    position: relative;
+    width: 100%;
+}
+
+/* Gaya untuk input nominal */
+#nominalInput {
+    background-color: #2D2D2D;
+    color: var(--white-1);
+    border: 2px solid #444;
+    border-radius: 10px;
+    padding: 15px 20px;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 500;
+    width: 100%;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    margin: 0;
+    box-sizing: border-box;
+    padding-right: 60px;
+}
+
+#nominalInput:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 10px rgba(74, 144, 226, 0.5);
+}
+
+#nominalInput::placeholder {
+    color: #888;
+    opacity: 1; /* Pastikan placeholder terlihat */
+}
+
+/* Gaya untuk teks "IDR" */
+.relative span {
+    color: #666;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1rem;
+    pointer-events: none;
+    line-height: 1;
+}
+
+/* Gaya untuk label "Nominal (IDR)" */
+.modal-content label {
+    text-align: left;
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--light-gray);
+    margin-bottom: 10px;
+}
+
+/* Tombol Aksi */
+#convertBtn, #confirm-whatsapp, #download-qrcode {
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 15px 30px;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 75%;
+    margin: 30px auto 0;
+    text-transform: uppercase;
+}
+
+#convertBtn {
+    background: linear-gradient(135deg, #6366F1, #3B82F6);
+    color: white;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#convertBtn:not(:disabled):hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    filter: brightness(1.1);
+}
+
+#convertBtn:not(:disabled) {
+    opacity: 1;
+    cursor: pointer;
+}
+
+#download-qrcode {
+    background: linear-gradient(135deg, #A400FF, #FF00E4);
+    color: #fff;
+    border: none;
+    text-decoration: none;
+    box-shadow: 0 0 25px rgba(255, 0, 228, 0.3);
+    margin: 25px auto 0;
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    width: 90%;
+    max-width: 250px;
+}
+
+#download-qrcode:hover {
+    background: linear-gradient(135deg, #FF00E4, #A400FF);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 35px rgba(255, 0, 228, 0.6);
+}
+
+/* Gaya untuk QR Code Container (Fokus pada estetika) */
+.qr-container {
+    /* Hapus atau komentari baris ini: background: linear-gradient(135deg, #EFEFEF, #FFFFFF); */
+    padding: 5px; /* Padding dikurangi secara drastis */
+    border-radius: 18px;
+    width: 280px; /* Ukuran tetap agar konsisten */
+    height: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto 15px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 3px solid #6366F1;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent; /* Pastikan latar belakang container transparan */
+}
+
+#qr-nominal {
+    font-size: 2rem;
+    color: var(--orange);
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(253, 173, 21, 0.3);
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* Dropdown Syarat & Ketentuan */
+.terms-checkbox-container {
+    margin-top: 25px;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.terms-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--orange);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.terms-checkbox:checked {
+    background-color: var(--orange);
+    border-color: var(--orange);
+}
+
+.terms-checkbox:checked::before {
+    content: '\f00c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 14px;
+    color: var(--black);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.terms-label {
+    font-size: 0.9rem;
+    color: var(--light-gray);
+    line-height: 1.4;
+    user-select: none;
+}
+
+.terms-label a {
+    color: var(--orange);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Gaya untuk Konten Syarat & Ketentuan (dengan scrollbar kustom) */
+.terms-content-text {
+    background-color: #222;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+    text-align: left;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #3A3A3A;
+    
+    /* === Gaya Scrollbar Kustom === */
+    scrollbar-width: thin;
+    scrollbar-color: var(--orange) #222;
+}
+
+/* Untuk Webkit browsers (Chrome, Safari) */
+.terms-content-text::-webkit-scrollbar {
+    width: 8px;
+}
+
+.terms-content-text::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+}
+
+.terms-content-text::-webkit-scrollbar-thumb {
+    background-color: var(--orange);
+    border-radius: 10px;
+    border: 2px solid #222;
+}
+
+.terms-content-text::-webkit-scrollbar-thumb:hover {
+    background-color: #FFA500;
+}
+
+.terms-content-text p {
+    font-size: 0.9rem;
+    color: var(--white-1);
+    margin-bottom: 15px;
+}
+
+.terms-content-text li {
+    font-size: 0.85rem;
+    color: var(--light-gray);
+    margin-bottom: 5px;
+}
+
+/* Gaya untuk tombol Selesai */
+#terms-done-button {
+    width: 75%;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+/* Gaya petunjuk penggunaan */
+.qris-instructions {
+    background: #2D2D2D;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.instruction-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+
+.instruction-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.instruction-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: var(--white-1);
+}
+
+.instruction-list li::before {
+    content: '\f10c';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--orange);
+    font-size: 14px;
+}
+
+.instruction-list li:nth-child(1)::before {
+    content: '\f007';
+}
+
+.instruction-list li:nth-child(2)::before {
+    content: '\f058';
+    color: #25D366;
+}
+
+.instruction-list li:nth-child(3)::before {
+    content: '\f05a';
+}
+
+.instruction-list li:nth-child(4)::before {
+    content: '\f030';
+}
+
+/* Animasi Baru */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* Gaya SweetAlert2 kustom */
+.sweetalert-popup {
+    border-radius: 20px !important;
+    border: 2px solid #3A3A3A !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+}
+
+.sweetalert-confirm {
+    border-radius: 50px !important;
+    padding: 10px 25px !important;
+    font-weight: 700 !important;
+    background-color: var(--blue-whatsapp) !important;
+}
+
+.sweetalert-cancel {
+    border-radius: 50px !important;
+    padding: 10px 25px !important;
+    font-weight: 700 !important;
+}
+
+/* ==================================== */
+/* GAYA KHUSUS SWEETALERT2 (TERGABUNG & FINAL) */
+/* ==================================== */
+
+/* Container Utama Pop-up */
+.swal2-popup.sweetalert-popup {
+    background: linear-gradient(160deg, #1A1A1A, #2C2C2C) !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    max-width: 380px !important;
+    width: 90% !important;
+    color: var(--white-1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7) !important;
+    border: 2px solid #3A3A3A !important;
+    text-align: center !important;
+}
+
+/* Judul Pop-up */
+.swal2-title {
+    font-size: 1.5rem !important;
+    color: var(--orange) !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    margin: 0 0 10px 0 !important;
+}
+
+/* Konten HTML di dalam Pop-up */
+.swal2-html-container {
+    text-align: center !important;
+}
+
+/* *** Perbaikan untuk pesan error *** */
+.swal2-validation-message {
+    background-color: transparent !important;
+    text-align: center !important; /* Memastikan teks pesan validasi rata tengah */
+    width: fit-content !important; /* Membuat lebar kotak sesuai konten */
+    margin: 10px auto !important; /* Menjamin kotak pesan rata tengah secara horizontal */
+}
+
+/* Bagian Header Info */
+.swal-header-section {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.swal-total-amount {
+    text-align: center !important;
+    font-weight: 600 !important;
+    font-size: 2.8rem !important;
+    color: var(--orange) !important;
+    margin: 15px 0 !important;
+    line-height: 1.2;
+}
+
+.swal-summary-info {
+    text-align: center !important;
+    font-size: 0.9rem !important;
+    color: var(--white-1) !important;
+    line-height: 1.6;
+}
+
+.swal-summary-info p {
+    margin: 0;
+    font-weight: 400;
+}
+
+.swal-summary-info span {
+    font-weight: 600;
+}
+
+.swal-terms-note {
+    font-size: 0.8em !important;
+    color: #888 !important;
+    font-style: italic;
+    display: block;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* Bagian Form */
+.swal-form-section {
+    margin-bottom: 20px;
+}
+
+.swal-section-title {
+    font-weight: 600 !important;
+    margin: 0 0 10px 0 !important;
+    color: var(--white-1) !important;
+    font-size: 1.1rem !important;
+    padding-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.swal2-input.custom-swal-input,
+.swal2-select.custom-swal-select {
+    background-color: #2D2D2D !important;
+    color: var(--white-1) !important;
+    border: 2px solid #444 !important;
+    border-radius: 10px !important;
+    padding: 15px 20px !important;
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    width: 100% !important;
+    margin: 8px auto !important;
+    transition: all 0.3s ease !important;
+}
+
+.swal2-select.custom-swal-select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23aaa" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+    padding-right: 40px !important;
+    cursor: pointer;
+}
+
+.swal2-input.custom-swal-input:focus,
+.swal2-select.custom-swal-select:focus {
+    outline: none !important;
+    border-color: var(--orange) !important;
+    box-shadow: 0 0 10px rgba(253, 173, 21, 0.5) !important;
+}
+
+/* Gaya Pesan Validasi */
+.swal-validation-message {
+    font-size: 1rem !important;
+    font-weight: 500 !important;
+    color: #FF6347 !important;
+    text-align: center !important;
+    padding: 10px 0 !important;
+    border-radius: 5px !important;
+    margin-top: 10px !important;
+}
+
+.swal-validation-message p {
+    margin: 0 !important;
+    padding-bottom: 5px !important;
+    color: inherit !important;
+}
+
+/* Catatan Kecil */
+.small-text-note {
+    font-size: 0.8em !important;
+    color: #888 !important;
+    margin-top: 15px;
+    text-align: left !important;
+    font-style: italic;
+    display: block;
+}
+
+/* Tombol Aksi */
+.swal2-actions {
+    margin-top: 25px !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 10px !important;
+}
+
+.swal2-confirm.sweetalert-confirm,
+.swal2-cancel.sweetalert-cancel {
+    border-radius: 50px !important;
+    padding: 10px 18px !important;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    flex-grow: 1 !important;
+    max-width: 170px;
+}
+
+.swal2-confirm.sweetalert-confirm {
+    background: var(--blue-whatsapp) !important;
+    color: white !important;
+    border: none !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+}
+
+.swal2-cancel.sweetalert-cancel {
+    background: #555 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.swal2-confirm.sweetalert-confirm:hover {
+    background: #1DBF5C !important;
+    transform: translateY(-2px) !important;
+}
+
+.swal2-cancel.sweetalert-cancel:hover {
+    background: #666 !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Responsif untuk Layar Kecil */
+@media (max-width: 380px) {
+    .swal2-popup.sweetalert-popup {
+        padding: 20px !important;
+    }
+    .swal2-title {
+        font-size: 1.2rem !important;
+    }
+    .swal-total-amount {
+        font-size: 2rem !important;
+    }
+    .swal-section-title {
+        font-size: 1rem !important;
+    }
+    .swal2-input.custom-swal-input,
+    .swal2-select.custom-swal-select {
+        font-size: 0.9rem !important;
+        padding: 12px 15px !important;
+    }
+    .swal2-confirm.sweetalert-confirm,
+    .swal2-cancel.sweetalert-cancel {
+        font-size: 0.8rem !important;
+        padding: 10px 15px !important;
+    }
+    .swal2-actions {
+        flex-direction: column !important;
+    }
+    .swal2-confirm.sweetalert-confirm,
+    .swal2-cancel.sweetalert-cancel {
+        min-width: unset !important;
+        width: 100% !important;
+        max-width: unset;
+    }
+}
+/* Pastikan SweetAlert2 muncul di atas semua elemen */
+.swal2-container {
+    z-index: 10000 !important;
+}
+
+/* Pastikan pop-up SweetAlert2 tidak terhalang */
+.swal2-popup {
+    z-index: 10001 !important;
 }
