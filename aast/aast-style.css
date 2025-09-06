@@ -1,0 +1,126 @@
+/* Instagram Checker CSS: Tampilan Simpel & Elegan */
+
+.checker-title {
+    font-size: 25px;
+}
+
+/* Gaya tombol file input */
+.checker-input-group input[type="file"] {
+    width: 100%;
+    padding: 5px 5px;
+    background-color: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 10px;
+    color: #f5f5f5;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.checker-input-group input[type="file"]::-webkit-file-upload-button {
+    background-color: #ff9100;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.checker-btn {
+    flex: 1;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.checker-btn-primary {
+    background-color: #ff9100;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.checker-btn-primary:hover {
+    background-color: #e58100;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.checker-btn-secondary {
+    background-color: #2a2a2a;
+    color: white;
+    border: 1px solid #444;
+}
+
+.checker-btn-secondary:hover {
+    background-color: #3a3a3a;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Area hasil dan statistik */
+.checker-stats,
+.checker-results {
+    margin-top: 30px;
+    padding: 25px;
+    background-color: #2a2a2a;
+    border-radius: 12px;
+    text-align: left;
+    min-height: 50px;
+    color: #a0a0a0;
+    line-height: 1.6;
+    border: 1px solid #444;
+}
+
+.checker-stats p strong {
+    color: #f5f5f5;
+}
+
+.checker-results h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #f5f5f5;
+}
+
+.checker-results a {
+    color: #ff9100;
+    text-decoration: none;
+    display: block;
+    padding: 5px 0;
+}
+
+/* Bagian instruksi */
+.checker-instructions {
+    text-align: left;
+}
+
+
+.checker-instructions ol {
+    padding-left: 20px;
+    list-style-position: inside;
+}
+
+.checker-instructions li {
+    font-size: 12px;
+    line-height: 1.8;
+    color: #a0a0a0;
+}
+
+/* MEDIA QUERY: Perbaikan untuk Tampilan Mobile */
+/* Ini adalah bagian yang paling penting untuk memperbaiki masalah scroll */
+@media (max-width: 768px) {
+    .modal-content {
+        max-height: 90vh; /* Batasi tinggi modal agar tidak melebihi viewport */
+        overflow-y: auto; /* Aktifkan scroll vertikal jika konten terlalu panjang */
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+}
