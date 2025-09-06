@@ -424,7 +424,7 @@ if (convertBtn) {
         const formattedFee = fee.toLocaleString('id-ID');
 
         const result = await Swal.fire({
-            title: 'Konfirmasi Pembayaran QRIS',
+            title: 'Konfirmasi QRIS \n via WhatsApp',
             html: `
                 <div class="swal-header-section">
                     <p class="swal-total-amount">Rp ${formattedTotal}</p>
@@ -442,12 +442,13 @@ if (convertBtn) {
                     <div class="swal-input-group-container">
                         <select id="swal-platform-pembayaran" class="swal2-select custom-swal-select">
                             <option value="">Platform Pembayaran</option>
-                            <option value="ShopeePay">ShopeePay</option>
-                            <option value="Paylatter">Paylatter</option>
+                            <option value="ShopeePay Latter">ShopeePay Latter</option>
+                            <option value="SPinjam">SPinjam</option>
                             <option value="Akulaku">Akulaku</option>
+                            <option value="EasyCash">EasyCash</option>
                             <option value="Lain-lain">Lain-lain</option>
                         </select>
-                        <input id="swal-platform-pembayaran-lain" class="swal2-input custom-swal-input" placeholder="Isi Platform Pembayaran Lainnya" style="display: none;">
+                        <input id="swal-platform-pembayaran-lain" class="swal2-input custom-swal-input" placeholder="Isi Platform Pembayaran...." style="display: none;">
                     </div>
                 </div>
                 
@@ -457,14 +458,15 @@ if (convertBtn) {
                     <div class="swal-input-group-container">
                         <select id="swal-platform-pencairan" class="swal2-select custom-swal-select">
                             <option value="">Platform Pencairan</option>
-                            <option value="ShopeePay">ShopeePay</option>
+                            <option value="BCA">BCA</option>
+                            <option value="MANDIRI">MANDIRI</option>
+                            <option value="BRI">BRI</option>
                             <option value="DANA">DANA</option>
-                            <option value="GoPay">GoPay</option>
-                            <option value="OVO">OVO</option>
-                            <option value="LinkAja">LinkAja</option>
+                            <option value="SEABANK">SEABANK</option>
+                            <option value="SHOPEEPAY">SHOPEEPAY</option>
                             <option value="Lain-lain">Lain-lain</option>
                         </select>
-                        <input id="swal-platform-pencairan-lain" class="swal2-input custom-swal-input" placeholder="Isi Platform Pencairan Lainnya" style="display: none;">
+                        <input id="swal-platform-pencairan-lain" class="swal2-input custom-swal-input" placeholder="Isi Nama Rekening...." style="display: none;">
                     </div>
                     <input id="swal-nomor-rekening" class="swal2-input custom-swal-input" placeholder="Nomor Rekening">
                 </div>
@@ -509,8 +511,7 @@ if (convertBtn) {
                 if (!namaLengkap || !nomorWhatsapp || !finalPlatformPembayaran || !namaRekening || !finalPlatformPencairan || !nomorRekening) {
                     Swal.showValidationMessage(`
                         <div class="swal-validation-message">
-                            <p>Mohon maaf, data belum lengkap.</p>
-                            <p>Silakan isi semua kolom yang diperlukan.</p>
+                            <p>Data belum lengkap!</p>
                         </div>
                     `);
                     return false;
