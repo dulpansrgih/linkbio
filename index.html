@@ -9,13 +9,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
     <link rel="shortcut icon" href="favicon/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="DULPANS' LINK" />
     <link rel="manifest" href="favicon/site.webmanifest" />
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./aast/aast-style.css">
 </head>
 <body>
     <div class="container">
@@ -46,7 +50,6 @@
                 </button>
             </div>
         </header>
-
         <div class="styled-divider"></div>
         <nav class="links-list">
             <button class="featured-box main-feature" onclick="window.open('https://prof.dulpanadisaragih.my.id/', '_blank')">
@@ -105,8 +108,7 @@
                         <img src="./images/AplleAndro.svg" alt="AppleAndro icon">
                     </div>
                     <div class="link-content-box">
-                        <h4 class="h4 link-item-title">AAST</h4>
-                        <p class="title"><h style="color: rgba(5, 238, 63, 0.993);">Apple & Android</h></p>
+                        <h4 class="h4 link-item-title"><span style="color: rgba(5, 238, 63, 0.993);">AAST</span></h4>
                         <div class="info-cont"></div>
                     </div>
                 </button>
@@ -132,6 +134,11 @@
             <div class="popup-buttons">
                 <button id="ok-button" class="popup-button ok">LANJUT</button>
                 <button id="cancel-button" class="popup-button cancel">BATAL</button>
+            </div>
+            <div class="styled-divider"></div>
+            <div class="loan-info">
+                <p>Butuh Dana? Bisa manfaatkan QRIS untuk Gesek Tunai dari Platform online, misal; ShopeePay Latter</p>
+                <button id="loan-button" class="popup-button loan">Cek Now!</button>
             </div>
         </div>
     </div>
@@ -218,7 +225,7 @@
         <div class="modal-content">
             <span class="modal-close-btn" id="close-purchase-modal">&times;</span>
             <h4>Pilih Platform</h4>
-            <p>Silakan pilih platform Shopee atau Lyml.id</p>
+            <p>Silakan pilih platform Shopee atau Lynk.id</p>
             <div class="modal-buttons-container">
                 <button class="modal-button purchase-shopee" onclick="window.open('https://shopee.co.id/dulpansrgih', '_blank')">
                     <img src="./images/shopee.png" alt="Shopee Logo">
@@ -245,16 +252,15 @@
                         </div>
                         <div class="profile-content">
                             <h4 class="featured-name">Instagram Checker</h4>
-                            <p class="featured-info">Tool online untuk cek follow & follower intagram kita dengan mudah.</p>
+                            <p class="featured-info">Tool online untuk cek follow & follower instagram kita dengan mudah.</p>
                             <div class="featured-buttons">
                                 <span class="featured-button">Use Tool Now!<i class="fas fa-arrow-right"></i></span>
                             </div>
                         </div>
                     </button>
-
                     <button class="app-item-button" onclick="window.open('aast/download-starter.html', '_blank')">
-                    <div class="profile-image-container">
-                        <img src="./aast/dramabox.jpg" alt="APK Icon">
+                        <div class="profile-image-container">
+                            <img src="./aast/dramabox.jpg" alt="APK Icon">
                         </div>
                         <div class="profile-content">
                             <h4 class="featured-name">Mod DramaBox.Apk</h4>
@@ -286,6 +292,10 @@
                 Selengkapnya lihat AAST disini!
             </a>
         </div>
+    </div>
+    <div id="custom-alert" class="custom-alert">
+        <i class="fas fa-check-circle custom-alert-icon"></i>
+        <span class="custom-alert-message">Link disalin!</span>
     </div>
     <button id="contact-button" class="contact-button is-active">
         <i class="fas fa-comment-dots"></i>
@@ -322,7 +332,7 @@
                                 Pesan
                             </label>
                         </div>
-                        <button type="submit" class="contact-submit-button">Kirim Email</button>
+                        <button type="submit" class="contact-submit-button">Kirim WhatsApp</button>
                     </form>
                 </div>
                 <div id="whatsapp-form" class="contact-form-content active" data-form="whatsapp">
@@ -347,10 +357,128 @@
             </div>
         </div>
     </div>
-    <div id="custom-alert" class="custom-alert">
-        <i class="fas fa-check-circle custom-alert-icon"></i>
-        <span class="custom-alert-message">Link disalin!</span>
+    
+    <div id="qris-modal" class="custom-modal">
+        <div class="modal-content">
+            <span class="modal-close-btn" id="close-qris-modal">&times;</span>
+            <h4>Donasi & Pembayaran</h4>
+            <p>Pilih nominal yang kamu inginkan.</p>
+            <div class="space-y-4 text-center">
+                <div>
+                    <label class="block text-sm font-medium text-gray-400 mb-2"><b>Nominal (IDR)</b></label>
+                    <div class="relative">
+                        <input type="text" id="nominalInput" class="w-full px-4 py-3 bg-slate-800 text-gray-100 border border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 text-lg" placeholder="Masukkan Nominal" onkeyup="formatNominal(this)" inputmode="numeric" pattern="[0-9]*">
+                        <span class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500">IDR</span>
+                    </div>
+                </div>
+                <button id="convertBtn" class="w-full py-4 text-center rounded-2xl text-white font-bold text-lg bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg" disabled>
+                    <i class="fas fa-qrcode mr-2"></i>
+                    Bayar dengan QRIS
+                </button>
+                <div class="qris-instructions">
+                    <h5 class="instruction-title">Langkah-langkah Pembayaran</h5>
+                    <ol class="instruction-list">
+                        <li>Masukkan nominal donasi atau pembayaran.</li>
+                        <li>Centang kotak "Syarat & Ketentuan" di bawah.</li>
+                        <li>Klik tombol **Bayar dengan QRIS**.</li>
+                        <li>Pindai QR code yang muncul dengan aplikasi e-wallet Anda.</li>
+                    </ol>
+                </div>
+                <div class="terms-checkbox-container">
+                    <input type="checkbox" id="termsCheckbox" class="terms-checkbox" disabled>
+                    <label for="termsCheckbox" class="terms-label">Saya telah membaca dan menyetujui <a href="#" id="openTermsLink">Syarat & Ketentuan</a></label>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div id="qr-display-modal" class="custom-modal">
+    <div class="modal-content">
+        <span class="modal-close-btn" id="close-qr-display">&times;</span>
+        <h4>Scan QRIS</h4>
+        <p>Gunakan aplikasi perbankan atau e-wallet Anda.</p>
+        
+        <div class="timer-container">
+            <span id="qr-timer">05:00</span>
+        </div>
+        
+        <div class="qr-container">
+            <canvas id="qr-canvas"></canvas>
+            <div id="qr-expired-message" style="display: none;">
+                <p>QR Code telah kedaluwarsa</p>
+                <button id="regenerateButton">Buat QR Baru</button>
+            </div>
+        </div>
+        <p class="text-gray-400">Nominal:</p>
+        <h3 id="qr-nominal" class="text-white"></h3>
+        
+        <div class="qr-buttons">
+            <button id="download-qrcode" class="modal-button download-qr">
+                <i class="fas fa-download"></i> Unduh QR Code
+            </button>
+            <button id="confirmWhatsappButton" class="modal-button confirm-whatsapp">
+                <i class="fab fa-whatsapp"></i> Konfirmasi via WhatsApp
+            </button>
+        </div>
+    </div>
+</div>
+    
+    <div id="terms-modal" class="custom-modal">
+        <div class="modal-content">
+            <h4>Syarat & Ketentuan</h4>
+            <div class="terms-content-text">
+                <p>Harap baca syarat dan ketentuan berikut dengan saksama sebelum melanjutkan:</p>
+                <ul class="list-disc list-inside text-left text-sm mt-4">
+                    <li>Pastikan nominal yang Anda masukkan sudah benar sebelum melakukan pembayaran. Kesalahan input nominal adalah tanggung jawab Anda.</li>
+                    <li>Pembayaran yang sudah berhasil tidak dapat dibatalkan, ditarik kembali, atau dikembalikan.</li>
+                    <li>Pastikan koneksi internet Anda stabil saat memindai QR code untuk menghindari masalah transaksi.</li>
+                    <li>QR code yang dibuat hanya berlaku untuk satu kali transaksi. Jangan gunakan QR code yang sama berulang kali.</li>
+                    <li>Dengan menekan tombol "Bayar dengan QRIS", Anda menyatakan telah membaca, memahami, dan menyetujui semua syarat dan ketentuan di atas.</li>
+                </ul>
+            </div>
+            <button id="terms-done-button" class="popup-button ok" style="margin-top: 20px;">Selesai</button>
+        </div>
+    </div>
+
+    <div id="instagram-checker-modal" class="custom-modal">
+  <div class="modal-content">
+    <span class="modal-close-btn" id="close-ig-checker-modal">&times;</span>
+    <div class="checker-container">
+      <div class="checker-header">
+        <h2 class="checker-title">Instagram Checker</h2>
+        <p class="checker-subtitle">Cari tahu siapa yang tidak followback kamu.</p>
+      </div>
+
+      <div class="checker-input-group">
+        <input type="file" id="followersFile" accept=".json" />
+        <label for="followersFile">Upload followers_1.json</label>
+      </div>
+      <div class="checker-input-group">
+        <input type="file" id="followingFile" accept=".json" />
+        <label for="followingFile">Upload following.json</label>
+      </div>
+
+      <div class="checker-buttons">
+        <button id="checkBtn" class="checker-btn checker-btn-primary">Check Now!</button>
+        <button id="resetBtn" class="checker-btn checker-btn-secondary">Reset</button>
+      </div>
+
+      <div id="stats" class="checker-stats"></div>
+      <div id="results" class="checker-results"></div>
+
+      <div class="checker-instructions">
+        <h3 class="instruction-title">Cara Mendapatkan Data</h3>
+        <ol>
+          <li>Buka Instagram &gt; **Settings & Privacy**.</li>
+          <li>Pilih **Your Information and Permissions**.</li>
+          <li>Klik **Download your information**.</li>
+          <li>Pilih data **followers** dan **following**.</li>
+          <li>Upload file <code>followers_1.json</code> dan <code>following.json</code>.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
