@@ -2126,16 +2126,16 @@ h2 {
 }
 
 .instruction-list li:nth-child(2)::before {
-    content: '\f058';
-    color: #25D366;
-}
-
-.instruction-list li:nth-child(3)::before {
     content: '\f05a';
 }
 
-.instruction-list li:nth-child(4)::before {
+.instruction-list li:nth-child(3)::before {
     content: '\f030';
+}
+
+.instruction-list li:nth-child(4)::before {
+    content: '\f058';
+    color: #25D366;
 }
 
 /* Animasi Baru */
@@ -2218,7 +2218,7 @@ h2 {
 .swal-total-amount {
     text-align: center !important;
     font-weight: 600 !important;
-    font-size: 2.8rem !important;
+    font-size: 2.0rem !important;
     color: var(--orange) !important;
     margin: 15px 0 !important;
     line-height: 1.2;
